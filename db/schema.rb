@@ -10,9 +10,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_20_182237) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_20_192912) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.date "date"
+    t.time "time"
+    t.boolean "status"
+    t.bigint "client_id", null: false
+    t.bigint "cathegory_id", null: false
+    t.bigint "offer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cathegory_id"], name: "index_bookings_on_cathegory_id"
+    t.index ["client_id"], name: "index_bookings_on_client_id"
+    t.index ["offer_id"], name: "index_bookings_on_offer_id"
+  end
+
+  create_table "cathegories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "clients", force: :cascade do |t|
+    t.string "name"
+    t.string "surname"
+    t.string "phone_number"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.string "name"
+    t.integer "price"
+    t.boolean "status"
+    t.text "description"
+    t.integer "required_number"
+    t.integer "percentage"
+    t.bigint "sub_cathegory_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sub_cathegory_id"], name: "index_offers_on_sub_cathegory_id"
+  end
+
+  create_table "sub_cathegories", force: :cascade do |t|
+    t.string "name"
+    t.time "time"
+    t.integer "price"
+    t.bigint "cathegory_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cathegory_id"], name: "index_sub_cathegories_on_cathegory_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,4 +78,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_20_182237) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "bookings", "cathegories"
+  add_foreign_key "bookings", "clients"
+  add_foreign_key "bookings", "offers"
+  add_foreign_key "offers", "sub_cathegories"
+  add_foreign_key "sub_cathegories", "cathegories"
 end
