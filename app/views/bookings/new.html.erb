@@ -1,0 +1,9 @@
+<div class="container">
+<h1> New Booking </h1>
+
+<%= render "form", booking: @booking, client: @client, sub_cathegory: @sub_cathegory, cathegory: @cathegory %>
+<br>
+<div>
+ <%= link_to "back to timetable", bookings_path %>
+</div>
+</div>
