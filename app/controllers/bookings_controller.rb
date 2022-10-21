@@ -1,6 +1,9 @@
 class BookingsController < ApplicationController
 
   def index
+    @bookings = Booking.where(
+      start_time: Time.now.beginning_of_week
+    )
   end
 
   def show
