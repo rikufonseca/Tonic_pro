@@ -1,1 +1,20 @@
-// Specific CSS for your home-page
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.middle {
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.home_button {
+  margin: 1rem;
+  padding: 1rem;
+  border: ridge 3px greenyellow;
+  border-radius: 2px;
+  background-color:white;
+}
