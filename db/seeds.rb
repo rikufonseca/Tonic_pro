@@ -4,7 +4,7 @@ puts "..."
 
 User.destroy_all
 Cathegory.destroy_all
-Sub_cathegory.destroy_all
+SubCathegory.destroy_all
 
 puts "All datas destroyed !"
 puts ""
@@ -17,108 +17,193 @@ puts ""
 puts "create cathegories"
 puts ""
 
-cathegory.create!(
-  name: NAME
+cat_one = Cathegory.create!(
+  name: "Manicure"
 )
 
-Category.all.each do |category|
-  case category.name
-    when "Manicure"
-      sub_mano_one = NAME[0]
-      sub_mano_two = NAME[1]
-      sub_mano_three = NAME[2]
-      sub_mano_four = NAME[3]
-      sub_mano_five = NAME[4]
-      sub_mano_six = NAME[5]
-      sub_mano_seven = NAME[6]
-      sub_mano_height = NAME[7]
-      sub_mano_nine = NAME[8]
-      sub_mano_ten = NAME[9]
-    when "Pedicure"
-    when "Ονυχοπλαστική"
-    when "Αντρική περιποίηση"
-    when "εξτρα"
-  end
+cat_two = Cathegory.create!(
+  name: "Pedicure"
+)
 
+cat_three = Cathegory.create!(
+  name: "Αντρική περιποίηση"
+)
 
+cat_four = Cathegory.create!(
+  name: "εξτρα"
+)
 
+puts "cathegory created"
+puts ""
 
 puts "create sub_cathegories"
 puts ""
 
-sub_mano_one = sub_cathegory.create!(
-name: "Manicure απλο",
-price: 10,
-time: 20
+sub_mano_one = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "Manicure απλο",
+  price: 11,
+  time: 20
 )
 
-sub_mano_two = sub_cathegory.create!(
-name: "Manicure semipermanent",
-price: 15,
-time: 30
+sub_mano_two = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "Manicure Ημιμόνιμο",
+  price: 16,
+  time: 30
 )
 
-sub_mano_three = sub_cathegory.create!(
-name: "Semipermanent (σχήμα - χρώμα)",
-price: 12,
-time: 20
+sub_mano_three = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "Ημιμόνιμο (σχήμα - χρώμα)",
+  price: 10,
+  time: 20
 )
 
-sub_mano_four = sub_cathegory.create!(
-name: "aplo (σχήμα - χρώμα)",
-price: 7,
-time: 15
+sub_mano_four = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "aplo (σχήμα - χρώμα)",
+  price: 6,
+  time: 15
 )
 
-sub_mano_five = sub_cathegory.create!(
-name: "Αφαίρεση Ημιμόνιμου",
-price: 5,
-time: 5
+sub_mano_five = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "Αφαίρεση Ημιμόνιμου",
+  price: 5,
+  time: 5
 )
 
-sub_mano_six = sub_cathegory.create!(
-name: "Αφαίρεση Τεχνητών",
-price: 10,
-time: 15
+sub_mano_six = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "Αφαίρεση Τεχνητών",
+  price: 10,
+  time: 15
 )
 
-sub_mano_seven = sub_cathegory.create!(
-name: "ΤοποΘέτηση τεχνητών acrygel",
-price: 40,
-time: 60
+sub_mano_seven = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "ΤοποΘέτηση τεχνητών acrygel",
+  price: 40,
+  time: 60
 )
 
-sub_mano_height = sub_cathegory.create!(
-name: "ΤοποΘέτηση τεχνητών acrylic",
-price: 45,
-time: 60
+sub_mano_height = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "ΤοποΘέτηση τεχνητών acrylic",
+  price: 45,
+  time: 60
 )
 
-sub_mano_nine = sub_cathegory.create!(
-name: "ΤοποΘέτηση τεχνητών gel",
-price: 40,
-time: 60
+sub_mano_nine = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "ΤοποΘέτηση τεχνητών gel",
+  price: 40,
+  time: 60
 )
 
-sub_mano_ten = sub_cathegory.create!(
-name: "Φυσική Ενίσχυση acrygel",
-price: 30,
-time: 60
+sub_mano_ten = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "Φυσική Ενίσχυση acrygel",
+  price: 30,
+  time: 60
 )
 
-sub_mano_ten = sub_cathegory.create!(
-name: "Φυσική Ενίσχυση acrylic",
-price: 35,
-time: 60
+sub_mano_eleven = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "Φυσική Ενίσχυση acrylic",
+  price: 35,
+  time: 60
 )
 
-sub_mano_ten = sub_cathegory.create!(
-name: "Φυσική Ενίσχυση gel",
-price: 30,
-time: 60
+sub_mano_twelve = SubCathegory.create!(
+  cathegory_id: cat_one.id,
+  name: "Φυσική Ενίσχυση gel",
+  price: 30,
+  time: 60
 )
 
+sub_pedi_one = SubCathegory.created!(
+  cathegory_id: cat_two.id,
+  name: "Pedicure απλο",
+  price: 15,
+  time: 30
+)
+
+sub_pedi_two = SubCathegory.created!(
+  cathegory_id: cat_two.id,
+  name: "Pedicure Ημιμόνιμο",
+  price: 20,
+  time: 40
+)
+
+sub_pedi_three = SubCathegory.created!(
+  cathegory_id: cat_two.id,
+  name: "Pedicure θεραπευτικο",
+  price: 23,
+  time: 50
+)
+
+sub_extra_one = SubCathegory.created!(
+  cathegory_id: cat_four.id,
+  name: "Χτισιμό ενός νυχίου",
+  price: 3,
+  time: 5
+)
+
+sub_extra_two = SubCathegory.created!(
+  cathegory_id: cat_four.id,
+  name: "Σχεδίο",
+  price: 1,
+  time: 1
+)
+
+sub_extra_three = SubCathegory.created!(
+  cathegory_id: cat_four.id,
+  name: "Rubber Base",
+  price: 2,
+  time: 1
+)
+
+sub_extra_four = SubCathegory.created!(
+  cathegory_id: cat_four.id,
+  name: "Φρύδια",
+  price: 5,
+  time: 5
+)
+
+sub_man_one = SubCathegory.created!(
+  cathegory_id: cat_three.id,
+  name: "Manicure",
+  price: 10,
+  time: 20
+)
+
+sub_man_two = SubCathegory.created!(
+  cathegory_id: cat_three.id,
+  name: "Pedicure",
+  price: 15,
+  time: 25
+)
 puts "sub_cathegories created!"
+puts ""
+
+Cathegory.all.each do |cathegory|
+  case cathegory.name
+    when "Manicure"
+      cat_one = [ sub_mano_one, sub_mano_two, sub_mano_three, sub_mano_four, sub_mano_five, sub_mano_six, sub_mano_seven, sub_mano_height, sub_mano_nine, sub_mano_ten, sub_mano_eleven, sub_mano_twelve ]
+    when "Pedicure"
+      cat_two = [ sub_pedi_one, sub_pedi_two, sub_pedi_three ]
+    when "Αντρική περιποίηση"
+      cat_three = [ sub_extra_one, sub_extra_two, sub_extra_three, sub_extra_four ]
+    when "εξτρα"
+      cat_four = [ sub_extra_one, sub_extra_two, sub_extra_three, sub_extra_four ]
+  end
+end
+
+puts "sub_cathegories in cathegories created!"
+puts ""
+puts "seeds done"
 
 
 # This file should contain all the record creation needed to seed the database with its default values.
