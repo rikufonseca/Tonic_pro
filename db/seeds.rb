@@ -195,7 +195,7 @@ Cathegory.all.each do |cathegory|
     when "Pedicure"
       cat_two = [ sub_pedi_one, sub_pedi_two, sub_pedi_three ]
     when "Αντρική περιποίηση"
-      cat_three = [ sub_extra_one, sub_extra_two, sub_extra_three, sub_extra_four ]
+      cat_three = [ sub_man_one, sub_man_two]
     when "εξτρα"
       cat_four = [ sub_extra_one, sub_extra_two, sub_extra_three, sub_extra_four ]
   end
