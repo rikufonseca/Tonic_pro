@@ -43,147 +43,147 @@ sub_mano_one = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "Manicure απλο",
   price: 11,
-  time: 20
+  time: 1200
 )
 
 sub_mano_two = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "Manicure Ημιμόνιμο",
   price: 16,
-  time: 30
+  time: 1800
 )
 
 sub_mano_three = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "Ημιμόνιμο (σχήμα - χρώμα)",
   price: 10,
-  time: 20
+  time: 1200
 )
 
 sub_mano_four = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "aplo (σχήμα - χρώμα)",
   price: 6,
-  time: 15
+  time: 900
 )
 
 sub_mano_five = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "Αφαίρεση Ημιμόνιμου",
   price: 5,
-  time: 5
+  time: 300
 )
 
 sub_mano_six = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "Αφαίρεση Τεχνητών",
   price: 10,
-  time: 15
+  time: 900
 )
 
 sub_mano_seven = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "ΤοποΘέτηση τεχνητών acrygel",
   price: 40,
-  time: 60
+  time: 3600
 )
 
 sub_mano_height = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "ΤοποΘέτηση τεχνητών acrylic",
   price: 45,
-  time: 60
+  time: 3600
 )
 
 sub_mano_nine = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "ΤοποΘέτηση τεχνητών gel",
   price: 40,
-  time: 60
+  time: 3600
 )
 
 sub_mano_ten = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "Φυσική Ενίσχυση acrygel",
   price: 30,
-  time: 60
+  time: 3600
 )
 
 sub_mano_eleven = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "Φυσική Ενίσχυση acrylic",
   price: 35,
-  time: 60
+  time: 3600
 )
 
 sub_mano_twelve = SubCathegory.create!(
   cathegory_id: cat_one.id,
   name: "Φυσική Ενίσχυση gel",
   price: 30,
-  time: 60
+  time: 3600
 )
 
-sub_pedi_one = SubCathegory.created!(
+sub_pedi_one = SubCathegory.create!(
   cathegory_id: cat_two.id,
   name: "Pedicure απλο",
   price: 15,
-  time: 30
+  time: 1800
 )
 
-sub_pedi_two = SubCathegory.created!(
+sub_pedi_two = SubCathegory.create!(
   cathegory_id: cat_two.id,
   name: "Pedicure Ημιμόνιμο",
   price: 20,
-  time: 40
+  time: 2400
 )
 
-sub_pedi_three = SubCathegory.created!(
+sub_pedi_three = SubCathegory.create!(
   cathegory_id: cat_two.id,
   name: "Pedicure θεραπευτικο",
   price: 23,
-  time: 50
+  time: 3000
 )
 
-sub_extra_one = SubCathegory.created!(
+sub_extra_one = SubCathegory.create!(
   cathegory_id: cat_four.id,
   name: "Χτισιμό ενός νυχίου",
   price: 3,
-  time: 5
+  time: 300
 )
 
-sub_extra_two = SubCathegory.created!(
+sub_extra_two = SubCathegory.create!(
   cathegory_id: cat_four.id,
   name: "Σχεδίο",
   price: 1,
-  time: 1
+  time: 120
 )
 
-sub_extra_three = SubCathegory.created!(
+sub_extra_three = SubCathegory.create!(
   cathegory_id: cat_four.id,
   name: "Rubber Base",
   price: 2,
-  time: 1
+  time: 120
 )
 
-sub_extra_four = SubCathegory.created!(
+sub_extra_four = SubCathegory.create!(
   cathegory_id: cat_four.id,
   name: "Φρύδια",
   price: 5,
-  time: 5
+  time: 300
 )
 
-sub_man_one = SubCathegory.created!(
+sub_man_one = SubCathegory.create!(
   cathegory_id: cat_three.id,
   name: "Manicure",
   price: 10,
-  time: 20
+  time: 1200
 )
 
-sub_man_two = SubCathegory.created!(
+sub_man_two = SubCathegory.create!(
   cathegory_id: cat_three.id,
   name: "Pedicure",
   price: 15,
-  time: 25
+  time: 1500
 )
 puts "sub_cathegories created!"
 puts ""
