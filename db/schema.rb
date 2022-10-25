@@ -10,24 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_24_155710) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_25_091005) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bookings", force: :cascade do |t|
     t.boolean "status"
     t.bigint "client_id", null: false
-    t.bigint "cathegory_id", null: false
+    t.bigint "category_id", null: false
     t.bigint "offer_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "start_time"
-    t.index ["cathegory_id"], name: "index_bookings_on_cathegory_id"
+    t.index ["category_id"], name: "index_bookings_on_category_id"
     t.index ["client_id"], name: "index_bookings_on_client_id"
     t.index ["offer_id"], name: "index_bookings_on_offer_id"
   end
 
-  create_table "cathegories", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -49,21 +49,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_155710) do
     t.text "description"
     t.integer "required_number"
     t.integer "percentage"
-    t.bigint "sub_cathegory_id", null: false
+    t.bigint "sub_category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.time "time"
-    t.index ["sub_cathegory_id"], name: "index_offers_on_sub_cathegory_id"
+    t.index ["sub_category_id"], name: "index_offers_on_sub_category_id"
   end
 
-  create_table "sub_cathegories", force: :cascade do |t|
+  create_table "sub_categories", force: :cascade do |t|
     t.string "name"
     t.integer "price"
-    t.bigint "cathegory_id", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "time"
-    t.index ["cathegory_id"], name: "index_sub_cathegories_on_cathegory_id"
+    t.index ["category_id"], name: "index_sub_categories_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -78,9 +78,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_24_155710) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "bookings", "cathegories"
+  add_foreign_key "bookings", "categories"
   add_foreign_key "bookings", "clients"
   add_foreign_key "bookings", "offers"
-  add_foreign_key "offers", "sub_cathegories"
-  add_foreign_key "sub_cathegories", "cathegories"
+  add_foreign_key "offers", "sub_categories"
+  add_foreign_key "sub_categories", "categories"
 end
