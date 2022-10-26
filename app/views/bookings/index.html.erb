@@ -8,7 +8,7 @@
   <% end %>
   <%= week_calendar(events: @bookings) do |date| %>
     <div class="day">
-      <%= date.day %>
+      <%= date.strftime("%e %b %Y") %>
     </div>
   <% end %>
 </div>
