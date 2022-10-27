@@ -17,5 +17,6 @@
   <div>
     <%= f.collection_select :category_id, Category.order(:name), :id, :name, style: "display: block"  %>
   </div>
+  <%= f.submit "Register" %>
 
 <% end %>

@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
     client_surname = Client.find_or_create_by(surname: params[:booking][:surname])
     client_phone = Client.find_or_create_by(phone_number: params[:booking][:phone_number])
     category = Category.order(:name).to_a
-    Booking.create(content: params[:booking], name: client_name, surname: client_surname, phone_number: client_phone, category: category)
+    Booking.create(client_id: [name: client_name, surname: client_surname, phone_number: client_phone], category_id: category, start_at: "start_at")
   end
 
   def edit
