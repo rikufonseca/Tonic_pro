@@ -15,7 +15,7 @@
     <%= f.input :start_at, placeholder: 'start_at' %>
   </div>
   <div>
-    <%= f.select :category, :collection => Category.all, :prompt => "Choose a Category", style: "display: block" %>
+    <%= f.collection_select :category_id, Category.order(:name), :id, :name, style: "display: block"  %>
   </div>
 
 <% end %>
