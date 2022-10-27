@@ -1,19 +1,21 @@
-<%= simple_form_for([booking, client, sub_category, category]) do |form| %>
+<%= simple_form_for(booking) do |f| %>
   <div>
-    <%= form.label :client_name, style: "display: block" %>
-    <%= form.text_field :client_name %>
+    <%= f.label :name, :label => "Customer's name",  :required => false, style: "display: block" %>
+    <%= f.text_field :category_id %>
   </div>
   <div>
-    <%= form.label :client_surname, style: "display: block" %>
-    <%= form.text_field :client_surname %>
+    <%= f.label :surname, :label => "Customer' surname", :required => false, style: "display: block" %>
+    <%= f.text_field :category_id %>
   </div>
   <div>
-    <%= form.label :phone_number, style: "display: block" %>
-    <%= form.text_field :phone_number %>
+    <%= f.label :phone_number, :label => "Customer's phone number", style: "display: block" %>
+    <%= f.text_field :category_id  %>
   </div>
   <div>
-    <%= form.select :category, style: "display: block" %>
-    <%= form.text_field :choose_a_category %>
+    <%= f.input :start_at, placeholder: 'start_at' %>
+  </div>
+  <div>
+    <%= f.select :category, :collection => Category.all, :prompt => "Choose a Category", style: "display: block" %>
   </div>
 
 <% end %>

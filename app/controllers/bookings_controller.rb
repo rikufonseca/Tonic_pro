@@ -1,5 +1,6 @@
 class BookingsController < ApplicationController
 
+
   def index
     @bookings = Booking.where(
       start_at: Time.now.beginning_of_week
@@ -15,10 +16,14 @@ class BookingsController < ApplicationController
     else
       @client = Client.new
     end
-    @category = Booking.where(category_id: @category.id)
+    @booking = Booking.new
   end
 
   def create
+    client_name = Client.find_or_create_by(name: params[:booking][:name])
+    client_surname = Client.find_or_create_by(surname: params[:booking][:surname])
+    client_phone = Client.find_or_create_by(phone_number: params[:booking][:phone_number])
+    Booking.create(content: params[:booking], name: client_name, surname: client_surname, phone_number: client_phone)
   end
 
   def edit
@@ -26,4 +31,8 @@ class BookingsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+
 end
