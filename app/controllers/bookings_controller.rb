@@ -2,7 +2,7 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.where(
-      start_time: Time.now.beginning_of_week
+      start_at: Time.now.beginning_of_week
     )
   end
 
@@ -10,6 +10,12 @@ class BookingsController < ApplicationController
   end
 
   def new
+    if Client.ids.nil?
+      @client = Client.find(params[:client_id])
+    else
+      @client = Client.new
+    end
+    @category = Booking.where(category_id: @category.id)
   end
 
   def create

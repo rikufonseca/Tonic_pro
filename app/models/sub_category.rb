@@ -1,5 +1,5 @@
-class SubCathegory < ApplicationRecord
-  belongs_to :cathegory
+class SubCategory < ApplicationRecord
+  belongs_to :category
   has_one :offer
 
   validates :name, :time, :price, presence: true

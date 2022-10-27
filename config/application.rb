@@ -15,8 +15,7 @@ module TonicPro
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
-    config.i18n.available_locales = [:en, :gr]
-    config.i18n.default_locale = :gr
+    config.beginning_of_week = :monday
 
     # Configuration for the application, engines, and railties goes here.
     #

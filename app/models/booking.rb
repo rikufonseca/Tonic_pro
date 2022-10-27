@@ -1,6 +1,9 @@
 class Booking < ApplicationRecord
+  extend SimpleCalendar
+  has_many :calendars
+
   belongs_to :client
-  belongs_to :cathegory
+  belongs_to :category
   belongs_to :offer
 
   validates :time, :date, presence: true
