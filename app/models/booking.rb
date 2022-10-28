@@ -1,4 +1,6 @@
 class Booking < ApplicationRecord
+  attr_accessor :phone_number
+
   extend SimpleCalendar
   has_many :calendars
 

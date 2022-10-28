@@ -1,16 +1,14 @@
-<%= simple_form_for(booking) do |f| %>
+<%= simple_form_for(@booking) do |f| %>
   <div>
-    <%= f.label :name, :label => "Customer's name",  :required => false, style: "display: block" %>
-    <%= f.text_field :category_id %>
+    <%= f.input :phone_number, label: "Customer's phone number", style: "display: block" %>
   </div>
-  <div>
-    <%= f.label :surname, :label => "Customer' surname", :required => false, style: "display: block" %>
-    <%= f.text_field :category_id %>
-  </div>
-  <div>
-    <%= f.label :phone_number, :label => "Customer's phone number", style: "display: block" %>
-    <%= f.text_field :category_id  %>
-  </div>
+  <%= link_to new_client_path , class: "home-link" do %>
+    <button class="home_button reservation_button">
+      <div class="grey">
+        creer un client
+      </div>
+    </button>
+  <% end %>
   <div>
     <%= f.input :start_at, placeholder: 'start_at' %>
   </div>

@@ -1,5 +1,6 @@
-class BookingsController < ApplicationController
+require 'date'
 
+class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.where(
@@ -9,22 +10,16 @@ class BookingsController < ApplicationController
 
   def show
   end
-
   def new
-    if Client.ids.nil?
-      @client = Client.find(params[:client_id])
-    else
-      @client = Client.new
-    end
+    # @clients = Client.all
     @booking = Booking.new
   end
 
   def create
-    client_name = Client.find_or_create_by(name: params[:booking][:name])
-    client_surname = Client.find_or_create_by(surname: params[:booking][:surname])
-    client_phone = Client.find_or_create_by(phone_number: params[:booking][:phone_number])
-    category = Category.order(:name).to_a
-    Booking.create(client_id: [name: client_name, surname: client_surname, phone_number: client_phone], category_id: category, start_at: "start_at")
+    raise
+    client = Client.find()
+    date = DateTime.new(params['booking']['start_at(1i)'].to_i, params['booking']['start_at(2i)'].to_i, params['booking']['start_at(3i)'].to_i, params['booking']['start_at(4i)'].to_i, params['booking']['start_at(5i)'].to_i)
+    # Booking.create()
   end
 
   def edit
@@ -32,5 +27,7 @@ class BookingsController < ApplicationController
 
   def destroy
   end
+
+
 
 end
