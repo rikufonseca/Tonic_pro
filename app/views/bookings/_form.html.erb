@@ -2,19 +2,25 @@
   <div>
     <%= f.input :phone_number, label: "Customer's phone number", style: "display: block" %>
   </div>
-  <%= link_to new_client_path , class: "home-link" do %>
-    <button class="home_button reservation_button">
-      <div class="grey">
-        creer un client
-      </div>
-    </button>
-  <% end %>
+  <div>
+    <%= f.input :name, label: "Customer's name", style: "display: block" %>
+  </div>
+  <div>
+    <%= f.input :surname, label: "Customer's surname", style: "display: block" %>
+  </div>
   <div>
     <%= f.input :start_at, placeholder: 'start_at' %>
   </div>
   <div>
-    <%= f.collection_select :category_id, Category.order(:name), :id, :name, style: "display: block"  %>
+    <%= f.collection_select :category_id, Category.order(:name), :id, :name, prompt: "Select a Category", style: "display: block"  %>
   </div>
-  <%= f.submit "Register" %>
-
+  <div>
+    <%= f.collection_select :combo_offer_id, ComboOffer.order(:name), :id, :name, prompt: "Select a Combo Offer", style: "display: block"  %>
+  </div>
+  <div>
+    <%= f.input :note, label: "Notes", style: "display: block" %>
+  </div>
+  <div>
+    <%= f.submit "Register" %>
+  </div>
 <% end %>
