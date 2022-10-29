@@ -8,6 +8,5 @@ class Booking < ApplicationRecord
   belongs_to :category
   belongs_to :combo_offer
 
-  validates :time, :date, presence: true
-  validates :time, :date, uniqueness: true
+  validates :start_at, :date, presence: true
 end
