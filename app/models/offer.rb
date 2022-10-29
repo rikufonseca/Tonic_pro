@@ -4,4 +4,5 @@ class Offer < ApplicationRecord
   has_many :clients, through: :offer_clients
 
   validates :status, inclusion: { in: [ true, false ] }
+  validates :required_number, :description, presence: true
 end
