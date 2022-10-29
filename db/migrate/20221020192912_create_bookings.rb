@@ -6,7 +6,6 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.boolean :status
       t.references :client, null: false, foreign_key: true
       t.references :cathegory, null: false, foreign_key: true
-      t.references :offer, null: false, foreign_key: true
 
       t.timestamps
     end

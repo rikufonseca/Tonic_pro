@@ -10,8 +10,8 @@ class BookingsController < ApplicationController
 
   def show
   end
+
   def new
-    # @clients = Client.all
     @booking = Booking.new
   end
 
