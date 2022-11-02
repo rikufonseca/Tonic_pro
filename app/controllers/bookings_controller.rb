@@ -1,6 +1,7 @@
 require 'date'
 
 class BookingsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: :getclient
 
   def index
     @bookings = Booking.where(
@@ -15,20 +16,13 @@ class BookingsController < ApplicationController
     @booking = Booking.new
   end
 
+  def getclient
+    phone = params['phone']
+    clients = Client.where("phone_number LIKE '%#{phone}%'")
+    render json: clients
+  end
+
   def create
-    @phone = Client.find([:phone_number])
-
-    respond_to do |format|
-      if @phone.find
-        format.html { redirect_to new_booking_path(@booking) }
-        format.json # Follow the classic Rails flow and look for a create.json view
-      else
-        format.html { render "bookings/create", status: :unprocessable_entity }
-        format.json # Follow the classic Rails flow and look for a create.json view
-      end
-    end
-
-    client = Client.find()
     date = DateTime.new(params['booking']['start_at(1i)'].to_i, params['booking']['start_at(2i)'].to_i, params['booking']['start_at(3i)'].to_i, params['booking']['start_at(4i)'].to_i, params['booking']['start_at(5i)'].to_i)
     # Booking.create()
   end
@@ -36,9 +30,8 @@ class BookingsController < ApplicationController
   def edit
   end
 
+
   def destroy
   end
-
-
 
 end
