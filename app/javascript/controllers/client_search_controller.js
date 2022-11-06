@@ -32,16 +32,20 @@ export default class extends Controller {
         appendData(data)
       })
 
-      function appendData(data) {
-        var div = document.createElement("div");
-        var div_two = document.createElement("div_two");
+    function appendData(data) {
+      var div = document.createElement("div");
+      var div_two = document.createElement("div_two");
+      if ((data.length === 0)) {
+        div = ""
+        div_two = ""
+      } else {
         for (let i = 0; i < data.length; i++) {
-        div = data[i].name;
-        div_two = data[i].surname;
-        }
-        client_name.value = div;
-        client_surname.value = div_two;
+          div = data[i].name
+          div_two = data[i].surname;
       }
-
+    }
+      client_name.value = div;
+      client_surname.value = div_two;
+    }
   }
 }
