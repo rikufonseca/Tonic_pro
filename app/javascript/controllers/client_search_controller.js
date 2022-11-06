@@ -1,12 +1,14 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["form", "phone"]
+  static targets = ["form", "phone", "clientname", "clientsurname"]
 
   connect() {
     console.log(this.element)
     console.log(this.phoneTarget)
     console.log(this.formTarget)
+    console.log(this.clientnameTarget)
+    console.log(this.clientsurnameTarget)
   }
 
   search(event) {
@@ -14,6 +16,8 @@ export default class extends Controller {
 
     const url = `http://${window.location.host}/getclient`
     const phone = this.phoneTarget.value
+    const client_name = this.clientnameTarget
+    const client_surname = this.clientsurnameTarget
 
     console.log(JSON.stringify({ phone: phone }))
 
@@ -24,7 +28,20 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-        console.log(data)
+        console.log(data);
+        appendData(data)
       })
+
+      function appendData(data) {
+        var div = document.createElement("div");
+        var div_two = document.createElement("div_two");
+        for (let i = 0; i < data.length; i++) {
+        div = data[i].name;
+        div_two = data[i].surname;
+        }
+        client_name.value = div;
+        client_surname.value = div_two;
+      }
+
   }
 }
