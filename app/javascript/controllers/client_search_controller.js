@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["form", "phone", "clientname", "clientsurname"]
+  static targets = ["form", "phone", "clientname", "clientsurname", "category"]
 
   connect() {
     console.log(this.element)
@@ -9,6 +9,7 @@ export default class extends Controller {
     console.log(this.formTarget)
     console.log(this.clientnameTarget)
     console.log(this.clientsurnameTarget)
+    console.log(this.categoryTarget)
   }
 
   search(event) {
@@ -19,7 +20,7 @@ export default class extends Controller {
     const client_name = this.clientnameTarget
     const client_surname = this.clientsurnameTarget
 
-    console.log(JSON.stringify({ phone: phone }))
+   // console.log(JSON.stringify({ phone: phone }))
 
     fetch(url, {
       method: "POST",
@@ -28,7 +29,7 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-        console.log(data);
+      //  console.log(data);
         appendData(data)
       })
 
@@ -47,5 +48,9 @@ export default class extends Controller {
       client_name.value = div;
       client_surname.value = div_two;
     }
+  }
+
+  select() {
+    console.log("cat changed")
   }
 }

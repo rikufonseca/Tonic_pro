@@ -14,11 +14,13 @@
     <div>
       <%= f.input :start_at, placeholder: 'start_at' %>
     </div>
-    <div>
-      <%= f.collection_select :category_id, Category.order(:name), :id, :name, prompt: "Select a Category", style: "display: block"  %>
-    </div>
-    <div>
-      <%= f.collection_select :combo_offer_id, ComboOffer.order(:name), :id, :name, prompt: "Select a Combo Offer", style: "display: block"  %>
+    <div class="inline">
+      <div>
+        <%= f.input :category_id, collection: Category.order(:name), prompt: "Select a Category", label: false, input_html: { data: { client_search_target: 'category', action: "change->client-search#select" }} %>
+      </div>
+      <div>
+        <%= f.input :combo_offer_id, collection: ComboOffer.order(:name), label: false, prompt: "Select a Combo Offer" %>
+      </div>
     </div>
     <div>
       <%= f.input :note, label: "Notes", style: "display: block" %>
