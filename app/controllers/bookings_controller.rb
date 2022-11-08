@@ -23,11 +23,11 @@ class BookingsController < ApplicationController
   end
 
   def getsubcat
-    if params["category"] != ""
+    if params["category"] == ""
+      sub_categories = []
+    else
       category = Category.find(params["category"].to_i)
       sub_categories = SubCategory.where(category_id: category)
-    else
-      sub_categories = []
     end
 
     render json: sub_categories
