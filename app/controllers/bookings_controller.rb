@@ -1,7 +1,7 @@
 require 'date'
 
 class BookingsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: :getclient
+  skip_before_action :verify_authenticity_token, only: [:getclient, :getsubcat]
 
   def index
     @bookings = Booking.where(
@@ -21,6 +21,18 @@ class BookingsController < ApplicationController
     clients = Client.where("phone_number LIKE '%#{phone}%'")
     render json: clients
   end
+
+  def getsubcat
+    if params["category"] != ""
+      category = Category.find(params["category"].to_i)
+      sub_categories = SubCategory.where(category_id: category)
+    else
+      sub_categories = []
+    end
+
+    render json: sub_categories
+  end
+
 
   def create
     date = DateTime.new(params['booking']['start_at(1i)'].to_i, params['booking']['start_at(2i)'].to_i, params['booking']['start_at(3i)'].to_i, params['booking']['start_at(4i)'].to_i, params['booking']['start_at(5i)'].to_i)

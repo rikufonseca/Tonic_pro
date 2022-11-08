@@ -50,7 +50,23 @@ export default class extends Controller {
     }
   }
 
-  select() {
-    console.log("cat changed")
+  select(event) {
+    event.preventDefault()
+
+    const url = `http://${window.location.host}/getsubcat`
+    const category = this.categoryTarget.value
+
+    console.log(JSON.stringify({ category: category }))
+
+    fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ category: category })
+    })
+      .then(response => response.json())
+      .then((data) => {
+        console.log(data);
+        appendData(data)
+      })
   }
 }

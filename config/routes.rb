@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'pages#dashboard'
   post 'getclient', to: 'bookings#getclient'
+  post 'getsubcat', to: 'bookings#getsubcat'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
