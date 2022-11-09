@@ -34,8 +34,8 @@ export default class extends Controller {
       })
 
     function appendData(data) {
-      var div = document.createElement("div");
-      var div_two = document.createElement("div_two");
+      const div = document.createElement("div");
+      const div_two = document.createElement("div_two");
       if ((data.length === 0)) {
         div = ""
         div_two = ""
@@ -68,5 +68,24 @@ export default class extends Controller {
         console.log(data);
         appendData(data)
       })
+
+
+    function appendData(data){
+
+    let div = document.createElement("div");
+    div.style.width = "191.6px"
+    div.style.height = "38px"
+    div.style.color = "black"
+    div.style.border = "solid 1px black"
+
+      function textInDiv(){
+        for (let i = 0; i < data.length; i++) {
+          div = data[i].name
+        }
+      };
+
+      div.innerHTML = ;
+    document.querySelector(".inline").appendChild(div);
+    }
   }
 }

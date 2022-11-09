@@ -29,10 +29,8 @@ class BookingsController < ApplicationController
       category = Category.find(params["category"].to_i)
       sub_categories = SubCategory.where(category_id: category)
     end
-
     render json: sub_categories
   end
-
 
   def create
     date = DateTime.new(params['booking']['start_at(1i)'].to_i, params['booking']['start_at(2i)'].to_i, params['booking']['start_at(3i)'].to_i, params['booking']['start_at(4i)'].to_i, params['booking']['start_at(5i)'].to_i)
@@ -42,8 +40,6 @@ class BookingsController < ApplicationController
   def edit
   end
 
-
   def destroy
   end
-
 end
