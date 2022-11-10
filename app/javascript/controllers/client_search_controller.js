@@ -73,7 +73,6 @@ export default class extends Controller {
 
       const select = document.createElement("select");
       select.setAttribute('multiple', '');
-      select.setAttribute('size', data.length);
       select.setAttribute('style', 'overfow-y: auto');
 
       for (var i = 0; i < data.length; i++){
@@ -83,7 +82,7 @@ export default class extends Controller {
         select.appendChild(option);
       };
 
-      document.querySelector(".inline").appendChild(select);
+      document.querySelector(".cats").appendChild(select);
     }
   }
 }

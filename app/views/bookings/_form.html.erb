@@ -15,8 +15,10 @@
       <%= f.input :start_at, placeholder: 'start_at' %>
     </div>
     <div class="inline">
-      <div>
-        <%= f.input :category_id, collection: Category.order(:name), prompt: "Select a Category", label: false, input_html: { data: { client_search_target: 'category', action: "change->client-search#select" }} %>
+      <div class="cats">
+        <div>
+          <%= f.input :category_id, collection: Category.order(:name), prompt: "Select a Category", label: false, input_html: { data: { client_search_target: 'category', action: "change->client-search#select" }} %>
+        </div>
       </div>
       <div>
         <%= f.input :combo_offer_id, collection: ComboOffer.order(:name), label: false, prompt: "Select a Combo Offer" %>
