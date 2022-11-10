@@ -20,7 +20,7 @@ export default class extends Controller {
     const client_name = this.clientnameTarget
     const client_surname = this.clientsurnameTarget
 
-   // console.log(JSON.stringify({ phone: phone }))
+    console.log(JSON.stringify({ phone: phone }))
 
     fetch(url, {
       method: "POST",
@@ -29,22 +29,22 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-      //  console.log(data);
+        console.log(data);
         appendData(data)
       })
 
     function appendData(data) {
-      const div = document.createElement("div");
-      const div_two = document.createElement("div_two");
+      let div = document.createElement("div");
+      let div_two = document.createElement("div_two");
       if ((data.length === 0)) {
-        div = ""
-        div_two = ""
+        div = "";
+        div_two = "";
       } else {
         for (let i = 0; i < data.length; i++) {
-          div = data[i].name
+          div = data[i].name;
           div_two = data[i].surname;
+        }
       }
-    }
       client_name.value = div;
       client_surname.value = div_two;
     }
@@ -69,23 +69,21 @@ export default class extends Controller {
         appendData(data)
       })
 
-
     function appendData(data){
 
-    let div = document.createElement("div");
-    div.style.width = "191.6px"
-    div.style.height = "38px"
-    div.style.color = "black"
-    div.style.border = "solid 1px black"
+      const select = document.createElement("select");
+      select.setAttribute('multiple', '');
+      select.setAttribute('size', data.length);
+      select.setAttribute('style', 'overfow-y: auto');
 
-      function textInDiv(){
-        for (let i = 0; i < data.length; i++) {
-          div = data[i].name
-        }
+      for (var i = 0; i < data.length; i++){
+        let option = document.createElement("option");
+        option.text = data[i].name;
+        option.value = data[i].name;
+        select.appendChild(option);
       };
 
-      div.innerHTML = ;
-    document.querySelector(".inline").appendChild(div);
+      document.querySelector(".inline").appendChild(select);
     }
   }
 }
