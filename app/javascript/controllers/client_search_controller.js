@@ -75,12 +75,12 @@ export default class extends Controller {
       select.setAttribute('multiple', '');
       select.setAttribute('style', 'overfow-y: auto');
 
-      for (var i = 0; i < data.length; i++){
-        let option = document.createElement("option");
-        option.text = data[i].name;
-        option.value = data[i].name;
-        select.appendChild(option);
-      };
+        for (var i = 0; i < data.length; i++) {
+          let option = document.createElement("option");
+            option.text = data[i].name;
+            option.value = data[i].name;
+            select.appendChild(option);
+        };
 
       document.querySelector(".cats").appendChild(select);
     }
