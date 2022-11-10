@@ -20,7 +20,7 @@ export default class extends Controller {
     const client_name = this.clientnameTarget
     const client_surname = this.clientsurnameTarget
 
-    console.log(JSON.stringify({ phone: phone }))
+   // console.log(JSON.stringify({ phone: phone }))
 
     fetch(url, {
       method: "POST",
@@ -29,7 +29,7 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-        console.log(data);
+       // console.log(data);
         appendData(data)
       })
 
@@ -56,7 +56,7 @@ export default class extends Controller {
     const url = `http://${window.location.host}/getsubcat`
     const category = this.categoryTarget.value
 
-    console.log(JSON.stringify({ category: category }))
+   // console.log(JSON.stringify({ category: category }))
 
     fetch(url, {
       method: "POST",
@@ -65,8 +65,12 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-        console.log(data);
-        appendData(data)
+       // console.log(data);
+        let sub_categories = document.querySelector('#sub_categories');
+        if ( sub_categories !== null){
+          sub_categories.remove()
+        };
+        appendData(data);
       })
 
     function appendData(data){
@@ -74,6 +78,8 @@ export default class extends Controller {
       const select = document.createElement("select");
       select.setAttribute('multiple', '');
       select.setAttribute('style', 'overfow-y: auto');
+      select.setAttribute('style', 'width: 244.46px')
+      select.setAttribute('id' , 'sub_categories');
 
         for (var i = 0; i < data.length; i++) {
           let option = document.createElement("option");
