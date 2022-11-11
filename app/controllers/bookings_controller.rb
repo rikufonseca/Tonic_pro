@@ -33,8 +33,23 @@ class BookingsController < ApplicationController
   end
 
   def create
+    Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|
+      client.name = params["booking"]["name"]
+      client.surname = params["booking"]["surname"]
+      client.phone_number = params["booking"]["phone_number"]
+    end
+
+    @booking = Booking.new(booking_params)
+
     date = DateTime.new(params['booking']['start_at(1i)'].to_i, params['booking']['start_at(2i)'].to_i, params['booking']['start_at(3i)'].to_i, params['booking']['start_at(4i)'].to_i, params['booking']['start_at(5i)'].to_i)
-    # Booking.create()
+
+    @booking.start_at = date
+
+    if @booking.save
+      redirect_to bookings_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def edit
@@ -42,4 +57,11 @@ class BookingsController < ApplicationController
 
   def destroy
   end
+
+  private
+
+  def booking_params
+    params.require(:booking).permit(:category_id, :combo_offer_id, :start_at, :note, :client_id)
+  end
+
 end

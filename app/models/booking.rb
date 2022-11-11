@@ -8,5 +8,8 @@ class Booking < ApplicationRecord
   belongs_to :category
   belongs_to :combo_offer
 
-  validates :start_at, :date, presence: true
+
+  default_scope -> { order(:start_at) }
+
+  validates :start_at, presence: true
 end

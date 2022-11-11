@@ -20,7 +20,7 @@ export default class extends Controller {
     const client_name = this.clientnameTarget
     const client_surname = this.clientsurnameTarget
 
-   // console.log(JSON.stringify({ phone: phone }))
+    console.log(JSON.stringify({ phone: phone }))
 
     fetch(url, {
       method: "POST",
@@ -29,7 +29,7 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-       // console.log(data);
+      // console.log(data);
         appendData(data)
       })
 
@@ -80,7 +80,6 @@ export default class extends Controller {
       select.setAttribute('style', 'overfow-y: auto');
       select.setAttribute('style', 'width: 244.46px')
       select.setAttribute('id' , 'sub_categories');
-
         for (var i = 0; i < data.length; i++) {
           let option = document.createElement("option");
             option.text = data[i].name;
