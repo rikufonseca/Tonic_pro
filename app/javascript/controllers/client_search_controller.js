@@ -56,16 +56,19 @@ export default class extends Controller {
     const url = `http://${window.location.host}/getsubcat`
     const category = this.categoryTarget.value
 
-   // console.log(JSON.stringify({ category: category }))
+    //console.log(category)
+    // console.log(JSON.stringify({ category: category }))
 
     fetch(url, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json" },
       body: JSON.stringify({ category: category })
     })
       .then(response => response.json())
+      console.log(response)
       .then((data) => {
-       // console.log(data);
+        console.log(data);
         let sub_categories = document.querySelector('#sub_categories');
         if ( sub_categories !== null){
           sub_categories.remove()
