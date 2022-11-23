@@ -4,7 +4,6 @@ Rails.application.routes.draw do
 
   resources :clients, only: %i(index show new create edit update)
   resources :bookings, only: %i(index new create show edit update destroy)
-  resources :offers, only: %i(index show new create edit update destroy)
   resources :categories, only: %i(index show new create edit update) do
     resources :sub_categories, only: %i(index show new create edit update)
   end

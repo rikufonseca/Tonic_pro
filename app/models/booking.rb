@@ -5,11 +5,10 @@ class Booking < ApplicationRecord
   has_many :calendars
 
   belongs_to :client
-  belongs_to :sub_category, optional: true
-  belongs_to :combo_offer, optional: true
+  belongs_to :sub_category
 
 
   default_scope -> { order(:start_at) }
 
-  validates :start_at, presence: true
+  validates :start_at, :sub_category, presence: true
 end

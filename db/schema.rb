@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_21_131658) do
+ActiveRecord::Schema[7.0].define(version: 2022_11_23_113721) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -20,11 +20,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_131658) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.datetime "start_at"
-    t.bigint "combo_offer_id"
     t.text "note"
     t.bigint "sub_category_id"
     t.index ["client_id"], name: "index_bookings_on_client_id"
-    t.index ["combo_offer_id"], name: "index_bookings_on_combo_offer_id"
     t.index ["sub_category_id"], name: "index_bookings_on_sub_category_id"
   end
 
@@ -41,36 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_131658) do
     t.string "email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "combo_offers", force: :cascade do |t|
-    t.string "name"
-    t.boolean "status"
-    t.integer "price"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "time"
-  end
-
-  create_table "offer_clients", force: :cascade do |t|
-    t.bigint "client_id", null: false
-    t.bigint "offer_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_offer_clients_on_client_id"
-    t.index ["offer_id"], name: "index_offer_clients_on_offer_id"
-  end
-
-  create_table "offers", force: :cascade do |t|
-    t.text "description"
-    t.boolean "status"
-    t.bigint "sub_category_id", null: false
-    t.integer "required_number"
-    t.integer "percentage"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["sub_category_id"], name: "index_offers_on_sub_category_id"
+    t.integer "nails_fidelity", default: 0
+    t.integer "jewellery", default: 0
   end
 
   create_table "sub_categories", force: :cascade do |t|
@@ -97,8 +67,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_21_131658) do
   end
 
   add_foreign_key "bookings", "clients"
-  add_foreign_key "offer_clients", "clients"
-  add_foreign_key "offer_clients", "offers"
-  add_foreign_key "offers", "sub_categories"
   add_foreign_key "sub_categories", "categories"
 end
