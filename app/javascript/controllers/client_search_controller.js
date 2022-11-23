@@ -56,8 +56,8 @@ export default class extends Controller {
     const url = `http://${window.location.host}/getsubcat`
     const category = this.categoryTarget.value
 
-    //console.log(category)
-    // console.log(JSON.stringify({ category: category }))
+  //  console.log(category)
+  //  console.log(JSON.stringify({ category: category }))
 
     fetch(url, {
       method: "POST",
@@ -66,7 +66,6 @@ export default class extends Controller {
       body: JSON.stringify({ category: category })
     })
       .then(response => response.json())
-      console.log(response)
       .then((data) => {
         console.log(data);
         let sub_categories = document.querySelector('#sub_categories');
