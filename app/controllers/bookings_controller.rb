@@ -34,7 +34,7 @@ class BookingsController < ApplicationController
   end
 
   def create
-    Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|
+    last_client = Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|
       client.name = params["booking"]["name"]
       client.surname = params["booking"]["surname"]
       client.phone_number = params["booking"]["phone_number"]
@@ -42,9 +42,16 @@ class BookingsController < ApplicationController
 
     @booking = Booking.new(booking_params)
 
+    @booking.client_id = last_client.id
+
     date = DateTime.new(params['booking']['start_at(1i)'].to_i, params['booking']['start_at(2i)'].to_i, params['booking']['start_at(3i)'].to_i, params['booking']['start_at(4i)'].to_i, params['booking']['start_at(5i)'].to_i)
 
     @booking.start_at = date
+
+
+
+    @booking.sub_category = params["sub_category"]
+    raise
 
     if @booking.save
       redirect_to bookings_path
@@ -62,6 +69,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:category_id, :start_at, :note, :client_id)
+    params.require(:booking).permit(:sub_category_id, :start_at, :note, :client_id)
   end
 end

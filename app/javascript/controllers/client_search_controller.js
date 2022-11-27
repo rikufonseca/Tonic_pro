@@ -78,10 +78,10 @@ export default class extends Controller {
     function appendData(data){
 
       const select = document.createElement("select");
-      select.setAttribute('multiple', '');
       select.setAttribute('style', 'overfow-y: auto');
       select.setAttribute('style', 'width: 244.46px')
       select.setAttribute('id' , 'sub_categories');
+      select.setAttribute('name', 'sub_categories');
         for (var i = 0; i < data.length; i++) {
           let option = document.createElement("option");
             option.text = data[i].name;

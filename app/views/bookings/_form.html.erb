@@ -16,7 +16,7 @@
     </div>
       <div class="cats">
         <div>
-          <%= f.input :category, collection: Category.order(:name), prompt: "Select a Category", label: false, input_html: { data: { client_search_target: 'category', action: "change->client-search#select" }} %>
+          <%= f.input :category, collection: Category.order(:name), prompt: "Select a Category", label: false, multiple: true, input_html: { data: { client_search_target: 'category', action: "change->client-search#select" }} %>
         </div>
       </div>
     </div>
