@@ -42,18 +42,14 @@ class BookingsController < ApplicationController
 
     @booking = Booking.new(booking_params)
 
-    @booking.client_id = last_client.id
+    @booking.client = last_client
 
     date = DateTime.new(params['booking']['start_at(1i)'].to_i, params['booking']['start_at(2i)'].to_i, params['booking']['start_at(3i)'].to_i, params['booking']['start_at(4i)'].to_i, params['booking']['start_at(5i)'].to_i)
 
     @booking.start_at = date
+    @booking.sub_category = SubCategory.find(params[:booking]["sub_category"].to_i)
 
-
-
-    @booking.sub_category = params["sub_category"]
-    raise
-
-    if @booking.save
+    if @booking.save!
       redirect_to bookings_path
     else
       render :new, status: :unprocessable_entity

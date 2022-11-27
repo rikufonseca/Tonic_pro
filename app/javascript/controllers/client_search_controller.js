@@ -80,12 +80,13 @@ export default class extends Controller {
       const select = document.createElement("select");
       select.setAttribute('style', 'overfow-y: auto');
       select.setAttribute('style', 'width: 244.46px')
-      select.setAttribute('id' , 'sub_categories');
-      select.setAttribute('name', 'sub_categories');
+      select.setAttribute('id' , 'booking_sub_category');
+      select.setAttribute('class', 'form-select select optional');
+      select.setAttribute('name', "booking[sub_category]");
         for (var i = 0; i < data.length; i++) {
           let option = document.createElement("option");
             option.text = data[i].name;
-            option.value = data[i].name;
+            option.value = data[i].id;
             select.appendChild(option);
         };
 
