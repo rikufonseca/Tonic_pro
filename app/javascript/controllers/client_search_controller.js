@@ -3,35 +3,28 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["form", "phone", "clientname", "clientsurname", "category"]
 
-  connect() {
-    console.log(this.element)
-    console.log(this.phoneTarget)
-    console.log(this.formTarget)
-    console.log(this.clientnameTarget)
-    console.log(this.clientsurnameTarget)
-    console.log(this.categoryTarget)
-  }
-
   search(event) {
     event.preventDefault()
 
     const url = `http://${window.location.host}/getclient`
-    const phone = this.phoneTarget.value
     const client_name = this.clientnameTarget
     const client_surname = this.clientsurnameTarget
+    const phone = this.phoneTarget.value
 
-    console.log(JSON.stringify({ phone: phone }))
-
-    fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone: phone })
-    })
-      .then(response => response.json())
-      .then((data) => {
-      // console.log(data);
-        appendData(data)
+    if(phone.length === 10 && Number.isInteger(parseInt(phone))) {
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: phone })
       })
+        .then(response => response.json())
+        .then((data) => {
+          appendData(data)
+        })
+    } else {
+      console.log("coucou")
+    }
+
 
     function appendData(data) {
       let div = document.createElement("div");

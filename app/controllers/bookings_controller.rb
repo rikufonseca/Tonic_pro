@@ -34,18 +34,17 @@ class BookingsController < ApplicationController
   end
 
   def create
+    @booking = Booking.new(booking_params)
+    phone_number = params["booking"]["phone_number"]
 
     last_client = Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|
       client.name = params["booking"]["name"]
       client.surname = params["booking"]["surname"]
-      client.phone_number = params["booking"]["phone_number"]
+      client.phone_number = phone_number
     end
 
-    @booking = Booking.new(booking_params)
-    @booking.client = last_client
-
     date = DateTime.new(params['booking']['start_at(1i)'].to_i, params['booking']['start_at(2i)'].to_i, params['booking']['start_at(3i)'].to_i, params['booking']['start_at(4i)'].to_i, params['booking']['start_at(5i)'].to_i)
-
+    @booking.client = last_client
     @booking.start_at = date
     @booking.sub_category = SubCategory.find(params[:booking]["sub_category"].to_i)
 
@@ -53,8 +52,8 @@ class BookingsController < ApplicationController
       redirect_to bookings_path
       flash[:notice] = "your booking had been registered"
     else
-      render :new, status: :unprocessable_entity
-      flash.now[:error] = "Something went wrong check the infos your entered"
+      redirect_to new_booking_path
+      flash[:alert] = "Something went wrong check the infos your entered"
     end
   end
 
