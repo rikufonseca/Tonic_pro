@@ -14,7 +14,6 @@ class BookingsController < ApplicationController
 
   def new
     @categories = Category.all
-    @clients = Client.all
     @booking = Booking.new
   end
 
