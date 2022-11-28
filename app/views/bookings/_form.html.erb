@@ -2,7 +2,7 @@
   <%= simple_form_for(@booking) do |f| %>
     <div data-client-search-target="form">
       <div>
-        <%= f.input :phone_number, input_html: { data: { client_search_target: 'phone', action: 'keyup->client-search#search' }}, remote: true, label: "Customer's phone number", style: "display: block" %>
+        <%= f.input :phone_number, input_html: { data: { client_search_target: 'phone', action: 'keyup->client-search#search' }}, label: "Customer's phone number", style: "display: block" %>
       </div>
       <div>
         <%= f.input :name, input_html: { data: { client_search_target: 'clientname' }}, label: "Customer's name", style: "display: block" %>

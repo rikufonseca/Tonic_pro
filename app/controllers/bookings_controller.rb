@@ -14,6 +14,7 @@ class BookingsController < ApplicationController
 
   def new
     @categories = Category.all
+    @clients = Client.all
     @booking = Booking.new
   end
 
@@ -34,17 +35,11 @@ class BookingsController < ApplicationController
   end
 
   def create
-    if params["booking"]["phone_number"].to_i.instance_of?(Integer)
-      last_client = Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|
-        client.name = params["booking"]["name"]
-        client.surname = params["booking"]["surname"]
-        client.phone_number = params["booking"]["phone_number"]
-      end
-    else
-      flash.now[:error] = "the number is not valid"
-      respond_to do |format|
-        format.json
-      end
+
+    last_client = Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|
+      client.name = params["booking"]["name"]
+      client.surname = params["booking"]["surname"]
+      client.phone_number = params["booking"]["phone_number"]
     end
 
     @booking = Booking.new(booking_params)
