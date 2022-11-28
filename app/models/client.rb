@@ -3,5 +3,5 @@ class Client < ApplicationRecord
 
   validates :name, :surname, :phone_number, presence: { message: "πρέπει να δοθεί παρακαλώ" }
   validates :phone_number, uniqueness: true
-  validates :phone_number, length: { minimum: 10, too_short: "%<count> χαρακτήρες δεν αρκούν για να επιτραπούν" }
+  validates :phone_number, length: { minimum: 10, message: "too short" }, on: :create
 end

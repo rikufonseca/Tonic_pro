@@ -18,13 +18,9 @@ class BookingsController < ApplicationController
   end
 
   def getclient
-    if phone.to_i.instance_of?(Integer)
-      phone = params['phone']
-      clients = Client.where("phone_number LIKE '%#{phone}%'")
-      render json: clients
-    else
-      flash[:error] = "the number is not valid"
-    end
+    phone = params['phone']
+    clients = Client.where("phone_number LIKE '%#{phone}%'")
+    render json: clients
   end
 
   def getsubcat
@@ -38,11 +34,18 @@ class BookingsController < ApplicationController
   end
 
   def create
+    if params["booking"]["phone_number"].to_i.instance_of?(Integer)
       last_client = Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|
         client.name = params["booking"]["name"]
         client.surname = params["booking"]["surname"]
         client.phone_number = params["booking"]["phone_number"]
       end
+    else
+      flash.now[:error] = "the number is not valid"
+      respond_to do |format|
+        format.json
+      end
+    end
 
     @booking = Booking.new(booking_params)
     @booking.client = last_client
@@ -57,7 +60,7 @@ class BookingsController < ApplicationController
       flash[:notice] = "your booking had been registered"
     else
       render :new, status: :unprocessable_entity
-      flash[:error] = "Something went wrong check the infos your entered"
+      flash.now[:error] = "Something went wrong check the infos your entered"
     end
   end
 
