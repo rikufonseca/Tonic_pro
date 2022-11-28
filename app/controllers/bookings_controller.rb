@@ -53,8 +53,8 @@ class BookingsController < ApplicationController
       redirect_to bookings_path
       flash[:notice] = "your booking had been registered"
     else
-      render :new, status: :unprocessable_entity
       flash.now[:error] = "Something went wrong check the infos your entered"
+      render :new, status: :unprocessable_entity
     end
   end
 
