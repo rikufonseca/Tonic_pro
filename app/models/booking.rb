@@ -1,6 +1,8 @@
 class Booking < ApplicationRecord
   attr_accessor :phone_number, :name, :surname, :category
 
+  validates_presence_of :phone_number, :name, :surname, :category
+
   extend SimpleCalendar
   has_many :calendars
 
