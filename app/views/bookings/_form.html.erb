@@ -1,5 +1,5 @@
 <div data-controller="client-search">
-  <%= simple_form_for @booking do |f| %>
+  <%= simple_form_for @booking, validate: true do |f| %>
     <div data-client-search-target="form">
       <div>
         <%= f.input :phone_number, error: "the number you entered is incorrect", input_html: { data: { client_search_target: 'phone', action: 'keyup->client-search#search' }}, label: "Customer's phone number", style: "display: block" %>

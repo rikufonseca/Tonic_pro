@@ -12,7 +12,6 @@ export default class extends Controller {
     const phone = this.phoneTarget.value
     let errormessage = this.errormessageTarget
 
-    if(phone.length >= 10 && Number.isInteger(parseInt(phone))) {
       fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -22,10 +21,6 @@ export default class extends Controller {
         .then((data) => {
           appendData(data)
         })
-    } else {
-      console.log("coucou")
-       errormessage.innerHTML = "the number you entered is wrong!"
-    }
 
     function appendData(data) {
       let div = document.createElement("div");
