@@ -2,9 +2,8 @@
   <%= simple_form_for @booking, validate: true do |f| %>
     <div data-client-search-target="form">
       <div>
-        <%= f.input :phone_number, error: "the number you entered is incorrect", input_html: { data: { client_search_target: 'phone', action: 'keyup->client-search#search' }}, label: "Customer's phone number", style: "display: block" %>
+        <%= f.input :phone_number, validate: { uniqueness: true, length: { minimum: 10, too_short: "number too short" }, format: { with: / \d+ /, message: "allow only letter" }}, input_html: { data: { client_search_target: 'phone', action: 'keyup->client-search#search' }}, label: "Customer's phone number", style: "display: block" %>
       </div>
-      <div class="red" data-client-search-target="errormessage"></div>
       <div>
         <%= f.input :name, input_html: { data: { client_search_target: 'clientname' }}, label: "Customer's name", style: "display: block" %>
       </div>
