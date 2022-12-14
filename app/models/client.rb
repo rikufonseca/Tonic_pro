@@ -1,5 +1,6 @@
 class Client < ApplicationRecord
   has_many :bookings
+  has_many :sales
 
   validates :name, :surname, :phone_number, presence: true
   validates :phone_number, uniqueness: true
