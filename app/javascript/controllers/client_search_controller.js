@@ -68,12 +68,13 @@ export default class extends Controller {
 
     function appendData(data, catDivs) {
 
+      
       const select = document.createElement("select");
       select.setAttribute('style', 'overfow-y: auto');
       select.setAttribute('style', 'width: 244.46px')
       select.setAttribute('id' , 'booking_sub_category1');
       select.setAttribute('class', 'form-select select optional');
-      select.setAttribute('name', "booking[sub_category]");
+      select.setAttribute('name', `booking[sub_category${catDivs.length}]`);
         for (var i = 0; i < data.length; i++) {
           let option = document.createElement("option");
             option.text = data[i].name;
