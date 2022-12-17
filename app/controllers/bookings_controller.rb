@@ -34,7 +34,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-    raise
     @booking = Booking.new(booking_params)
 
     last_client = Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|
@@ -64,6 +63,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:sub_category_id, :start_at, :note, :client_id)
+    params.require(:booking).permit(:start_at, :note, :confirmed)
   end
 end

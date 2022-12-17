@@ -14,5 +14,5 @@ class Booking < ApplicationRecord
 
   default_scope -> { order(:start_at) }
 
-  validates :start_at, presence: true
+  validates :start_time, :end_time, :status, :total_price, :confirmed, presence: true
 end
