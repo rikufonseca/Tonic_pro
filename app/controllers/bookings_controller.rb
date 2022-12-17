@@ -34,6 +34,7 @@ class BookingsController < ApplicationController
   end
 
   def create
+    raise
     @booking = Booking.new(booking_params)
 
     last_client = Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|

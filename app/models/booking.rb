@@ -3,7 +3,7 @@ class Booking < ApplicationRecord
 
   attr_accessor :phone_number, :name, :surname, :category
 
-  validates_presence_of :phone_number, :name, :surname, :category
+  validates_presence_of :phone_number, :name, :surname
 
   has_many :calendars
   has_many :sales
@@ -14,5 +14,5 @@ class Booking < ApplicationRecord
 
   default_scope -> { order(:start_at) }
 
-  validates :start_at, :sub_category, presence: true
+  validates :start_at, presence: true
 end
