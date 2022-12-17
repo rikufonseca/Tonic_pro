@@ -74,7 +74,7 @@ export default class extends Controller {
       select.setAttribute('style', 'width: 244.46px')
       select.setAttribute('id' , 'booking_sub_category1');
       select.setAttribute('class', 'form-select select optional');
-      select.setAttribute('name', `booking[sub_category${catDivs.length}]`);
+      select.setAttribute('name', `booking[sub_cats][${catDivs.length}]`);
         for (var i = 0; i < data.length; i++) {
           let option = document.createElement("option");
             option.text = data[i].name;
