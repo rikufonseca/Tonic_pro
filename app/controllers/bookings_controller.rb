@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
 
   def index
     @bookings = Booking.where(
-      start_at: Time.now.beginning_of_week
+      start_time: Time.now.beginning_of_week
     )
   end
 
@@ -34,25 +34,55 @@ class BookingsController < ApplicationController
   end
 
   def create
-    raise
     @booking = Booking.new(booking_params)
 
-    last_client = Client.find_or_create_by(phone_number: params["booking"]["phone_number"]) do |client|
-      client.name = params["booking"]["name"]
-      client.surname = params["booking"]["surname"]
-      client.phone_number = params["booking"]["phone_number"]
+    sub_categories_ids = params[:booking][:sub_cats].values
+    
+    price = 0
+    total_time = 0
+
+    sub_categories_ids.each do |id|
+      sub_cat = SubCategory.find(id.to_i)
+      price += sub_cat.price
+      total_time += sub_cat.time
     end
 
-    date = DateTime.new(params['booking']['start_at(1i)'].to_i, params['booking']['start_at(2i)'].to_i, params['booking']['start_at(3i)'].to_i, params['booking']['start_at(4i)'].to_i, params['booking']['start_at(5i)'].to_i)
-    @booking.client = last_client
-    @booking.start_at = date
-    @booking.sub_category = SubCategory.find(params[:booking]["sub_category"].to_i)
-    if @booking.save!
-      redirect_to bookings_path
-      flash[:notice] = "your booking had been registered"
-    else
-      render :new, status: :unprocessable_entity
+    start = DateTime.new(params[:booking]['start_time(1i)'].to_i, 
+      params[:booking]['start_time(2i)'].to_i, 
+      params[:booking]['start_time(3i)'].to_i, 
+      params[:booking]['start_time(4i)'].to_i, 
+      params[:booking]['start_time(5i)'].to_i)
+
+    finish = start + total_time
+
+    client = Client.find_or_create_by(phone_number: params[:booking][:phone_number]) do |client|
+      client.name = params[:booking][:name]
+      client.surname = params[:booking][:surname]
+      client.phone_number = params[:booking][:phone_number]
     end
+
+    @booking.client = client
+    @booking.start_time = start
+    @booking.end_time = finish
+    @booking.total_price = price
+    @booking.save!
+    
+    sub_categories_ids.each_with_index do |id, index|
+      booking_sub_cat = BookingSubCategory.new(
+        booking: @booking,
+        sub_category_id: id.to_i
+      )
+      if index == sub_categories_ids.count - 1
+        if booking_sub_cat.save!
+          redirect_to bookings_path
+          flash[:success] = "your booking is registered"
+        else
+          render :new, status: :unprocessable_entity
+        end
+      else
+        booking_sub_cat.save!
+      end
+    end    
   end
 
   def edit
@@ -64,6 +94,6 @@ class BookingsController < ApplicationController
   private
 
   def booking_params
-    params.require(:booking).permit(:start_at, :note, :confirmed)
+    params.require(:booking).permit(:start_time, :note, :confirmed, :total_price, :end_time)
   end
 end
