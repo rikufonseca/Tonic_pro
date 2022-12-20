@@ -12,13 +12,20 @@
       </div>
     </div>
     <div>
-      <%= f.input :start_at, placeholder: 'start_at' %>
+      <%= f.input :start_time, placeholder: 'start_at' %>
     </div>
-      <div class="cats">
-        <div>
-          <%= f.input :category, collection: Category.order(:name), prompt: "Select a Category", label: false, multiple: true, input_html: { data: { client_search_target: 'category', action: "change->client-search#select" }} %>
+    <div data-controller="add-booking-works">
+      <div data-add-booking-works-target="bookingWorks">
+        <div class="cats" data-client-search-target="catDiv">
+          <div>
+            <%= f.input :category, collection: Category.order(:name), prompt: "Select a Category", label: false, multiple: true, input_html: { data: { client_search_target: 'category', action: "change->client-search#select" }} %>
+          </div>
         </div>
       </div>
+      <div>
+        <p data-action="click->add-booking-works#addWork">Add another work</p>
+      </div>
+    </div>
     </div>
     <div>
       <%= f.input :note, label: "Notes", style: "display: block" %>

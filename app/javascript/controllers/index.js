@@ -4,8 +4,11 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import AddBookingWorksController from "./add_booking_works_controller"
+application.register("add-booking-works", AddBookingWorksController)
 
 import ClientSearchController from "./client_search_controller"
 application.register("client-search", ClientSearchController)
+
+import HelloController from "./hello_controller"
+application.register("hello", HelloController)

@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["form", "phone", "clientname", "clientsurname", "category", "errormessage"]
+  static targets = ["form", "phone", "clientname", "clientsurname", "category", "errormessage", "catDiv"]
 
   search(event) {
     event.preventDefault()
@@ -42,8 +42,11 @@ export default class extends Controller {
   select(event) {
     event.preventDefault()
 
-    const url = `http://${window.location.host}/getsubcat`
-    const category = this.categoryTarget.value
+    const url = `http://${window.location.host}/getsubcat`;
+    const categories = this.categoryTargets;
+    const category = categories[categories.length -1].value;
+
+    const catDivs = this.catDivTargets;
 
   //  console.log(category)
   //  console.log(JSON.stringify({ category: category }))
@@ -56,22 +59,22 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then((data) => {
-        console.log(data);
         let sub_categories = document.querySelector('#sub_categories');
         if ( sub_categories !== null){
           sub_categories.remove()
         };
-        appendData(data);
+        appendData(data, catDivs);
       })
 
-    function appendData(data){
+    function appendData(data, catDivs) {
 
+      
       const select = document.createElement("select");
       select.setAttribute('style', 'overfow-y: auto');
       select.setAttribute('style', 'width: 244.46px')
-      select.setAttribute('id' , 'booking_sub_category');
+      select.setAttribute('id' , 'booking_sub_category1');
       select.setAttribute('class', 'form-select select optional');
-      select.setAttribute('name', "booking[sub_category]");
+      select.setAttribute('name', `booking[sub_cats][${catDivs.length}]`);
         for (var i = 0; i < data.length; i++) {
           let option = document.createElement("option");
             option.text = data[i].name;
@@ -79,7 +82,9 @@ export default class extends Controller {
             select.appendChild(option);
         };
 
-      document.querySelector(".cats").appendChild(select);
+        const catDiv = catDivs[catDivs.length - 1];
+
+      catDiv.appendChild(select);
     }
   }
 }
