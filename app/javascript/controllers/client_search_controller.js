@@ -18,8 +18,6 @@ export default class extends Controller {
     const submit = this.submitTarget;
     const phoneInput = this.phoneInputTarget; 
 
-    console.log(client_name.value === "")
-
     phoneInput.innerHTML = "";
 
     if(phone.length === 10 && Number.isInteger(parseInt(phone))) {
