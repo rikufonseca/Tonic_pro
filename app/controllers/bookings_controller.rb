@@ -4,9 +4,8 @@ class BookingsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:getclient, :getsubcat]
 
   def index
-    @bookings = Booking.where(
-      start_time: Time.now.beginning_of_week
-    )
+    start_date = params.fetch(:start_date, Date.today).to_date
+    @bookings = Booking.where(start_time: start_date.beginning_of_week..start_date.end_of_week)
   end
 
   def show
@@ -53,7 +52,7 @@ class BookingsController < ApplicationController
       params[:booking]['start_time(4i)'].to_i, 
       params[:booking]['start_time(5i)'].to_i)
 
-    finish = start + total_time
+    finish = start + total_time.seconds
 
     client = Client.find_or_create_by(phone_number: params[:booking][:phone_number]) do |client|
       client.name = params[:booking][:name]

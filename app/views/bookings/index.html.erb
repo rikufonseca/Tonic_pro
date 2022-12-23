@@ -6,9 +6,15 @@
       </div>
     </button>
   <% end %>
-  <%= week_calendar(events: @bookings) do |date| %>
+  <%= week_calendar(events: @bookings) do |date, bookings| %>
     <div class="day">
       <%= date.strftime("%e %b %Y") %>
+    </div>
+    <div>
+      <% bookings.each do |booking| %>
+        <%= booking.client.full_name %>
+        <p>from <%= booking.start_time.strftime("%H:%M") %> to <%= booking.end_time.strftime("%H:%M") %></p>
+      <% end %>
     </div>
   <% end %>
 </div>
