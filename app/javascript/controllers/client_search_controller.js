@@ -20,7 +20,7 @@ export default class extends Controller {
 
     phoneInput.innerHTML = "";
 
-    if(phone.length === 10 && Number.isInteger(parseInt(phone))) {
+    if(phone.length >= 10 && Number.isInteger(parseInt(phone))) {
       fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
