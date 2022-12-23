@@ -2,7 +2,20 @@
   <%= simple_form_for @booking, validate: true do |f| %>
     <div data-client-search-target="form">
       <div>
-        <%= f.input :phone_number, validate: { uniqueness: true, length: { minimum: 10, too_short: "number too short" }, format: { with: / \d+ /, message: "allow only letter" }}, input_html: { data: { client_search_target: 'phone', action: 'keyup->client-search#search' }}, label: "Customer's phone number", style: "display: block" %>
+        <%= f.input :phone_number, 
+          validate: { uniqueness: true, 
+          length: { minimum: 10, too_short: "number too short" }, 
+          format: { with: / \d+ /, message: "allow only letter" }}, 
+          input_html: { 
+            data: { 
+              client_search_target: 'phone', 
+              action: 'keyup->client-search#search' 
+            }
+          }, 
+          label: "Customer's phone number", 
+          style: "display: block" 
+        %>
+        <p data-client-search-target = "phoneInput"></p>
       </div>
       <div>
         <%= f.input :name, input_html: { data: { client_search_target: 'clientname' }}, label: "Customer's name", style: "display: block" %>
@@ -10,28 +23,28 @@
       <div>
         <%= f.input :surname, input_html: { data: { client_search_target: 'clientsurname' }}, label: "Customer's surname", style: "display: block" %>
       </div>
-    </div>
-    <div>
-      <%= f.input :start_time, placeholder: 'start_at' %>
-    </div>
-    <div data-controller="add-booking-works">
-      <div data-add-booking-works-target="bookingWorks">
-        <div class="cats" data-client-search-target="catDiv">
-          <div>
-            <%= f.input :category, collection: Category.order(:name), prompt: "Select a Category", label: false, multiple: true, input_html: { data: { client_search_target: 'category', action: "change->client-search#select" }} %>
+      <div>
+        <%= f.input :start_time, placeholder: 'start_at' %>
+      </div>
+      <div data-controller="add-booking-works">
+        <div data-add-booking-works-target="bookingWorks">
+          <div class="cats" data-client-search-target="catDiv">
+            <div>
+              <%= f.input :category, collection: Category.order(:name), prompt: "Select a Category", label: false, multiple: true, input_html: { data: { client_search_target: 'category', action: "change->client-search#select" }} %>
+            </div>
           </div>
         </div>
+        <div>
+          <p data-action="click->add-booking-works#addWork">Add another work</p>
+        </div>
+      </div>
       </div>
       <div>
-        <p data-action="click->add-booking-works#addWork">Add another work</p>
+        <%= f.input :note, label: "Notes", style: "display: block" %>
       </div>
-    </div>
-    </div>
-    <div>
-      <%= f.input :note, label: "Notes", style: "display: block" %>
-    </div>
-    <div>
-      <%= f.submit "Register" %>
+      <div>
+        <%= f.submit "Register", data: { client_search_target: 'submit' } %>
+      </div>
     </div>
   <% end %>
 </div>
