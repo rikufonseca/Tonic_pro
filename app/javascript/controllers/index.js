@@ -12,3 +12,6 @@ application.register("client-search", ClientSearchController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import NewPlanningController from "./new_planning_controller"
+application.register("new-planning", NewPlanningController)
