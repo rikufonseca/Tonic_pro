@@ -1,0 +1,16 @@
+<div>
+  <h1>Plannings of <%= Date.today.year %></h1>
+</div>
+
+<div>
+  <ul>
+    <% @plannings.each do |planning| %>
+      <li>
+        <%= link_to planning_path(planning) do %>
+          Planning from <%= planning.from.strftime("%d %B %Y") %> to <%= planning.to.strftime("%d %B %Y") %> (week <%= planning.week %>)
+        <% end %>
+      </li>
+    <% end %>
+  <%= link_to "test planning path without id", "planning" %>
+  </ul>
+</div>

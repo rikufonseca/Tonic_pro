@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     resources :sub_categories, only: %i(index new create edit update destroy)
   end
 
-  resources :plannings, only: %i(new create)
-  get "planning", to: "plannings#show"
+  resources :plannings, only: %i(index new create)
+  get "planning(/:id)", to: "plannings#show", as: "planning"
 
   get 'dashboard', to: 'pages#dashboard'
   post 'getclient', to: 'bookings#getclient'
