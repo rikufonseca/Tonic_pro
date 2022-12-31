@@ -1,0 +1,20 @@
+<table id="planning">
+  <thead>
+    <tr>
+      <th colspan="7">Planning Week <%= @planning.week %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <% Planning::WEEK_DAYS.each do |day| %>
+          <td class="week-day" scop="col" colspan="2"><%= day %></td>
+      <% end %>
+    </tr>
+    <tr>
+      <% 7.times do %>
+        <td class="week-day"></td>
+        <td class="week-day"></td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
