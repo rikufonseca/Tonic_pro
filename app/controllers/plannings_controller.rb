@@ -12,19 +12,15 @@ class PlanningsController < ApplicationController
 
     @planning = Planning.find_by(week: this_week).nil? ? Planning.last : Planning.find_by(week: this_week)
 
-    shifts = @planning.shifts
+    @shifts = @planning.shifts
 
-    shifts.each do |shift|
-      
-    end
-
-    @monday_shifts = shifts.filter { |shift| shift.beginning.monday? }
-    @tuesday_shifts =shifts.filter { |shift| shift.beginning.tuesday? }
-    @wednesday_shifts = shifts.filter { |shift| shift.beginning.wednesday? }
-    @thursday_shifts = shifts.filter { |shift| shift.beginning.thursday? }
-    @friday_shifts = shifts.filter { |shift| shift.beginning.friday? }
-    @saturday_shifts = shifts.filter { |shift| shift.beginning.saturday? }
-    @sunday_shifts = shifts.filter { |shift| shift.beginning.sunday? }
+    # @monday_shifts = shifts.filter { |shift| shift.beginning.monday? }
+    # @tuesday_shifts =shifts.filter { |shift| shift.beginning.tuesday? }
+    # @wednesday_shifts = shifts.filter { |shift| shift.beginning.wednesday? }
+    # @thursday_shifts = shifts.filter { |shift| shift.beginning.thursday? }
+    # @friday_shifts = shifts.filter { |shift| shift.beginning.friday? }
+    # @saturday_shifts = shifts.filter { |shift| shift.beginning.saturday? }
+    # @sunday_shifts = shifts.filter { |shift| shift.beginning.sunday? }
   end
 
   def new

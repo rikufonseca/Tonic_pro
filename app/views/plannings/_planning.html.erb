@@ -1,4 +1,4 @@
-<table id="planning">
+<table>
   <thead>
     <tr>
       <th colspan="7">Planning Week <%= @planning.week %></th>
@@ -6,15 +6,33 @@
   </thead>
   <tbody>
     <tr>
+      <td class="week-day" scop="col" colspan="1"></td>
       <% Planning::WEEK_DAYS.each do |day| %>
           <td class="week-day" scop="col" colspan="2"><%= day %></td>
       <% end %>
     </tr>
-    <tr>
-      <% 7.times do %>
-        <td class="week-day"></td>
-        <td class="week-day"></td>
-      <% end %>
-    </tr>
+    <% time = Time.new(@planning.from.strftime("%Y"), @planning.from.strftime("%m"), @planning.from.strftime("%d"), 10, 00) %>
+    <% 12.times do %>
+      <tr class="begin-hour" id="<%= time.strftime("%H:%M") %>">
+        <% day = Date.new(@planning.to.strftime("%Y").to_i, @planning.from.strftime("%m").to_i, @planning.from.strftime("%d").to_i) %>
+        <td><%= time.strftime("%H:%M") %></td>
+        <% 7.times do %>
+          <td class="planning-cell" id="<%= day.strftime("%A") %>"><%= @shifts.select { |shift| shift.beginning.strftime("%A") == day.strftime("%A") && shift.beginning == time.strftime("%H:%M") } %></td>
+          <td class="planning-cell" id="<%= day.strftime("%A") %>"></td>
+          <% day -= 86400 %>
+        <% end %>
+      </tr>
+      <% time += 1800 %>
+      <tr class="end-hour" id="<%= time.strftime("%H:%M") %>">
+        <% day = Date.new(@planning.to.strftime("%Y").to_i, @planning.from.strftime("%m").to_i, @planning.from.strftime("%d").to_i) %>
+        <td><%= time.strftime("%H:%M") %></td>
+        <% 7.times do %>
+          <td class="planning-cell" id="<%= day.strftime("%A") %>"></td>
+          <td class="planning-cell" id="<%= day.strftime("%A") %>"></td>
+          <% day -= 86400 %>
+        <% end %>
+      </tr>
+      <% time += 1800 %>
+    <% end %>
   </tbody>
 </table>

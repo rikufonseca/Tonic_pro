@@ -1,4 +1,26 @@
 .week-day {
   border: solid 1px black;
-  width: 70px;
+  width: 120px;
+  height: 15px;
+}
+
+.begin-hour {
+  // border-top: solid 1px black;
+  border-right: solid 1px black;
+  border-left: solid 1px black;
+  border-bottom: solid 1px rgb(175, 175, 175);
+  height: 15px;
+}
+
+.end-hour {
+  border-right: solid 1px black;
+  border-left: solid 1px black;
+  border-bottom: solid 1px black;
+  height: 15px;
+}
+
+.planning-cell {
+  width: 35px;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
 }
