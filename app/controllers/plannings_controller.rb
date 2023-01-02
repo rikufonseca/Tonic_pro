@@ -15,7 +15,7 @@ class PlanningsController < ApplicationController
     @shifts = @planning.shifts
 
     # @monday_shifts = shifts.filter { |shift| shift.beginning.monday? }
-    # @tuesday_shifts =shifts.filter { |shift| shift.beginning.tuesday? }
+    # @tuesday_shifts = shifts.filter { |shift| shift.beginning.tuesday? }
     # @wednesday_shifts = shifts.filter { |shift| shift.beginning.wednesday? }
     # @thursday_shifts = shifts.filter { |shift| shift.beginning.thursday? }
     # @friday_shifts = shifts.filter { |shift| shift.beginning.friday? }
