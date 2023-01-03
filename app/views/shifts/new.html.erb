@@ -1,0 +1,19 @@
+<h1>New shift</h1>
+
+<div class="container">
+  <%= form_with model:[@planning, @shift], class: "new-shift-form" do |form| %>
+    <%= form.select :employee_id, @employees %>
+    <%= form.select :day, @tonic.days.map(&:name) %>
+    <div class="shift-form-group">
+      <%= form.label :ending, "From :" %>
+      <%= form.select :beginnning_hour, (10..22).to_a %>
+      <%= form.select :beginnning_minutes, ["00", "30"] %>
+    </div>
+    <div class="shift-form-group">
+      <%= form.label :ending, "To :" %>
+      <%= form.select :ending_hour, (10..22).to_a %>
+      <%= form.select :ending_minutes, ["00", "30"] %>
+    </div>
+    <%= form.submit %>
+  <% end %>
+</div>

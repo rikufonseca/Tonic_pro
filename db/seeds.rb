@@ -13,6 +13,7 @@ Client.destroy_all
 Shift.destroy_all
 Planning.destroy_all
 Employee.destroy_all
+Day.destroy_all
 Tonic.destroy_all
 
 puts "All datas destroyed !"
@@ -245,7 +246,15 @@ tonic = Tonic.create!(
   city: "Athens",
   country: "Greece"
 )
-puts "Tonic #{tonic.city} created !"
+Tonic::TONIC_ATHENS_DAYS.each do |day|
+  Day.create!(
+    name: day[:name],
+    opening: day[:opening],
+    closing: day[:closing],
+    tonic: tonic
+  )
+end
+puts "Tonic #{tonic.city} with opening days created !"
 puts ""
 
 User.create!(email: "fonsecarika@gmail.com", password: "123456789")
@@ -262,6 +271,7 @@ employee = Employee.create!(
   note: "Always late...",
   tonic_id: tonic.id
 )
+puts "#{employee.first_name} created !"
 
 employee = Employee.create!(
   first_name: "Eleny",
@@ -270,6 +280,7 @@ employee = Employee.create!(
   note: "",
   tonic_id: tonic.id
 )
+puts "#{employee.first_name} created !"
 
 employee = Employee.create!(
   first_name: "Sophia",
@@ -278,5 +289,7 @@ employee = Employee.create!(
   note: "Do the best nails in Athens !",
   tonic_id: tonic.id
 )
+puts "#{employee.first_name} created !"
+
 
 puts "seeds done 🎉🎉"
