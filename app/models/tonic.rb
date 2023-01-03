@@ -1,0 +1,2 @@
+class Tonic < ApplicationRecord
+end

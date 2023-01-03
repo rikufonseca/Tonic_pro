@@ -10,13 +10,12 @@ SubCategory.destroy_all
 Category.destroy_all
 Client.destroy_all
 
+Shift.destroy_all
+Planning.destroy_all
+Employee.destroy_all
+Tonic.destroy_all
+
 puts "All datas destroyed !"
-puts ""
-
-User.create!(email: "fonsecarika@gmail.com", password: "123456789")
-User.create!(email: "loris.reynaud@gmail.com", password: "azerty")
-
-puts "Rika 💅 & Loris 👨‍🔧 created ! "
 puts ""
 
 puts "create categories"
@@ -237,5 +236,47 @@ Client.create!(
 
 puts "Client created!"
 puts ""
+
+#################################### TONIC & Planning Part ####################################
+
+# create a tonic store
+tonic = Tonic.create!(
+  address: "Skoufa 27, Kolonaki",
+  city: "Athens",
+  country: "Greece"
+)
+puts "Tonic #{tonic.city} created !"
+puts ""
+
+User.create!(email: "fonsecarika@gmail.com", password: "123456789")
+User.create!(email: "loris.reynaud@gmail.com", password: "azerty")
+
+puts "Rika 💅 & Loris 👨‍🔧 created ! "
+puts ""
+
+# create employees
+employee = Employee.create!(
+  first_name: "Maria",
+  last_name: "Rastapopoulos",
+  color: "#C8FFC8",
+  note: "Always late...",
+  tonic_id: tonic.id
+)
+
+employee = Employee.create!(
+  first_name: "Eleny",
+  last_name: "Vahariti",
+  color: "#EEEEAA",
+  note: "",
+  tonic_id: tonic.id
+)
+
+employee = Employee.create!(
+  first_name: "Sophia",
+  last_name: "Strogili",
+  color: "#FFC8C8",
+  note: "Do the best nails in Athens !",
+  tonic_id: tonic.id
+)
 
 puts "seeds done 🎉🎉"
