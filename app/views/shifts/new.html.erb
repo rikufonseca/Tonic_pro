@@ -2,7 +2,7 @@
 
 <div class="container">
   <%= form_with model:[@planning, @shift], class: "new-shift-form" do |form| %>
-    <%= form.select :employee_id, @employees %>
+    <%= form.select :employee, @employees %>
     <%= form.select :day, @tonic.days.map(&:name) %>
     <div class="shift-form-group">
       <%= form.label :ending, "From :" %>
