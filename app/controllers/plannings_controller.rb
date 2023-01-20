@@ -8,9 +8,9 @@ class PlanningsController < ApplicationController
 
     if params[:id]
       @planning = Planning.find(params[:id])
+    else
+      @planning = Planning.find_by(week: this_week).nil? ? Planning.last : Planning.find_by(week: this_week)
     end
-
-    @planning = Planning.find_by(week: this_week).nil? ? Planning.last : Planning.find_by(week: this_week)
 
     shifts = @planning.shifts
     time = Time.new(@planning.from.strftime("%Y"), @planning.from.strftime("%m"), @planning.from.strftime("%d"), 10, 00)

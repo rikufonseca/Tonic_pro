@@ -6,38 +6,33 @@ class Tonic < ApplicationRecord
   TONIC_ATHENS_DAYS = [
     {
       name: "Monday",
-      opening: "10",
-      closing: "20"
+      opening: "12:00",
+      closing: "21:00"
     },
     {
       name: "Tuesday",
-      opening: "10",
-      closing: "22"
+      opening: "9:00",
+      closing: "21:00"
     },
     {
       name: "Wednesday",
-      opening: "10",
-      closing: "22"
+      opening: "9:00",
+      closing: "18:40"
     },
     {
       name: "Thursday",
-      opening: "10",
-      closing: "22"
+      opening: "9:00",
+      closing: "21:00"
     },
     {
       name: "Friday",
-      opening: "10",
-      closing: "22"
+      opening: "10:00",
+      closing: "22:00"
     },
     {
       name: "Saturday",
-      opening: "10",
-      closing: "22"
-    },
-    {
-      name: "Sunday",
-      opening: "10",
-      closing: "14"
+      opening: "10:00",
+      closing: "19:00"
     }
   ]
 end
