@@ -11,7 +11,11 @@
             <% end_index = (shift.ending - (9 * 3600)).strftime("%H").to_f.floor * 6 - 1 %>
             <div>
               <div style="height:<%= 5 * start_index %>px;">-</div>
-              <div style="height:<%= 5 * (end_index - start_index) %>px; background-color: <%= shift.employee.color %>;"><%= shift.employee.first_name %></div>
+              <div style="height:<%= 5 * (end_index - start_index) %>px; background-color: <%= shift.employee.color %>;">
+                <%= shift.employee.first_name %><br>
+                <%= shift.beginning.strftime("%H:%M") %>h<br> - <br>
+                <%= shift.ending.strftime("%H:%M") %>h
+                </div>
               <div style="height:<%= 5 * (78 - end_index) %>px;">-</div>
             </div>
           <% end %>

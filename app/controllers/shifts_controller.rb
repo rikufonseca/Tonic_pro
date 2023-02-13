@@ -16,7 +16,7 @@ class ShiftsController < ApplicationController
     when "Monday" then beginning
     when "Tuesday" then beginning += 1.day
     when "Wednesday" then beginning += 2.day
-    when "Thurday" then beginning += 3.day
+    when "Thursday" then beginning += 3.day
     when "Friday" then beginning += 4.day
     when "Saturday" then beginning += 5.day
     when "Sunday" then beginning += 6.day
