@@ -1,31 +1,41 @@
-<h1>Planning Week <%= @planning.week %></h1>
-
-<%= link_to "Add a shift", new_planning_shift_path(@planning) %>
-
 <div id="planning-table">
-  <% Tonic::TONIC_ATHENS_DAYS.each do |day| %>
-    <div class="<%= day[:name] %> day-column">
-      <div class="day-cell"><%= day[:name] %></div>
-      <div class="employees-column">
-      <div>
-        <% 13.times do %>
-          <div class="planning-hour employee-1">
-            <% 6.times do %>
-              <div class="planning-cell"></div>
-            <% end %>
-          </div>
-        <% end %>
+
+  <%  @week_shifts.each do |day_shifts| %>
+    <div class="day-column">
+      <div class="day-cell"><%= day_shifts.first.beginning.strftime("%A") unless day_shifts.empty? %></div>
+      <% hour = 9 %>
+      <% mins = 0 %>
+      <% day_shifts.each do |shift| %>
+        <div class="planning-cell"></div>
+      <% end %>
+    </div> 
+  <% end %>
+
+  <% if false %>
+    <% Tonic::TONIC_ATHENS_DAYS.each do |day| %>
+      <div class="<%= day[:name] %> day-column">
+        <div class="day-cell"><%= day[:name] %></div>
+        <div class="employees-column">
+        <div>
+          <% 13.times do %>
+            <div class="planning-hour employee-1">
+              <% 6.times do %>
+                <div class="planning-cell"></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div>
+          <% 13.times do %>
+            <div class="planning-hour employee-2">
+              <% 6.times do %>
+                <div class="planning-cell"></div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        </div>
       </div>
-      <div>
-        <% 13.times do %>
-          <div class="planning-hour employee-2">
-            <% 6.times do %>
-              <div class="planning-cell"></div>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-      </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
