@@ -12,6 +12,7 @@ class PlanningsController < ApplicationController
       @planning = Planning.find_by(week: this_week).nil? ? Planning.last : Planning.find_by(week: this_week)
     end
 
+    @employees = Employee.all
     @shifts = @planning.shifts
     time = Time.new(@planning.from.strftime("%Y"), @planning.from.strftime("%m"), @planning.from.strftime("%d"), 10, 00)
     day = Date.new(@planning.to.strftime("%Y").to_i, @planning.from.strftime("%m").to_i, @planning.from.strftime("%d").to_i)

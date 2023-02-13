@@ -1,25 +1,22 @@
 <div id="planning-table" data-controller="planning" data-planning-shifts-value="<%= @shifts %>">
-    <% Tonic::TONIC_ATHENS_DAYS.each do |day| %>
-      <div class="<%= day[:name] %> day-column">
-        <div class="day-cell"><%= day[:name] %></div>
-        <div class="employees-column">
-          <div>
-            <% hour = 9 %>
-            <% mins = 0%>
-            <% 13.times do %>
-              <div class="planning-hour">
-                <% 6.times do %>
-                  <div class="planning-cell <%= day[:name] %> <%= hour %>:<%= mins == 0 ? "0" : "" %><%= mins %>"></div>
-                  <% mins += 10 %>
-                  <% if mins == 60 %>
-                    <% hour += 1 %>
-                    <% mins = 0 %>
-                  <% end %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
+
+  <% Tonic::TONIC_ATHENS_DAYS.each do |day| %>
+    <div class="<%= day[:name] %> day-column">
+      <div class="day-cell"><%= day[:name] %></div>
+      <% shifts = @shifts.select{ |shift| shift.beginning.strftime("%A") == day[:name] } %>
+      <% unless shifts.empty? %>
+        <div class="shift-cell">
+          <% shifts.each do |shift| %>
+            <% start_index = (shift.beginning - (9 * 3600)).strftime("%H").to_f.floor * 6 %>
+            <% end_index = (shift.ending - (9 * 3600)).strftime("%H").to_f.floor * 6 - 1 %>
+            <div>
+              <div style="height:<%= 5 * start_index %>px;">-</div>
+              <div style="height:<%= 5 * (end_index - start_index) %>px; background-color: <%= shift.employee.color %>;"><%= shift.employee.first_name %></div>
+              <div style="height:<%= 5 * (78 - end_index) %>px;">-</div>
+            </div>
+          <% end %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
+  <% end %>
 </div>
