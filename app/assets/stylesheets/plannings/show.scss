@@ -20,10 +20,46 @@
   display: flex;
 }
 
+.planning-hours {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.table-line {
+    width: 100%;
+    border-bottom: 1px solid black;
+    height: 24px;
+    z-index: 1;
+    position: absolute;
+}
+
 .employees-column {
   display: flex;
 }
 
 .shift-cell {
   display: flex;
+  position: relative;
+  z-index: 2;
+}
+
+.hour {
+  font-size: 0.7rem;
+  display: flex;
+  height: 24px;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.shift-column {
+  width: 33%;
+}
+
+.shift-perso {
+  font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }

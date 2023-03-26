@@ -5,8 +5,4 @@ export default class extends Controller {
   static values = {
     shifts: Array
   }
-
-  connect() {
-    console.log(this.shiftsValue);
-  }
 }
