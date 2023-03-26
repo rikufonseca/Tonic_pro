@@ -3,6 +3,10 @@
 </div>
 
 <div>
+  <%= link_to "Create a new planning", new_planning_path %>
+</div>
+
+<div>
   <ul>
     <% @plannings.each do |planning| %>
       <li>
@@ -11,6 +15,5 @@
         <% end %>
       </li>
     <% end %>
-  <%= link_to "test planning path without id", "planning" %>
   </ul>
 </div>

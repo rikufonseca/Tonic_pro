@@ -1,6 +1,9 @@
 
 <div class="container">
   <h1>Planning Week <%= @planning.week %></h1>
-  <%= link_to "Add a shift", new_planning_shift_path(@planning) %>
+  <div class="display-col">
+    <%= link_to "all plannings", plannings_path %>
+    <%= link_to "Add a shift", new_planning_shift_path(@planning) %>
+  </div>
   <%= render "planning" %>
 </div>
