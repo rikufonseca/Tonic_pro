@@ -1,0 +1,57 @@
+<div class="planning d-flex">
+    <div class="planning-hours">
+      <div class="hours">Heures</div>
+      <div class="hour">9h</div>
+      <div class="hour">10h</div>
+      <div class="hour">11h</div>
+      <div class="hour">12h</div>
+      <div class="hour">13h</div>
+      <div class="hour">14h</div>
+      <div class="hour">15h</div>
+      <div class="hour">16h</div>
+      <div class="hour">17h</div>
+      <div class="hour">18h</div>
+      <div class="hour">19h</div>
+      <div class="hour">20h</div>
+      <div class="hour">21h</div>
+    </div>
+
+    <div id="planning-table" data-controller="planning" data-planning-shifts-value="<%= @shifts %>">
+
+      <% Tonic::TONIC_ATHENS_DAYS.each do |day| %>
+        <div class="<%= day[:name] %> day-column">
+          <div class="day-cell"><%= day[:name] %></div>
+
+
+          <%# debut d'idée pour créer la grille %>
+
+          <%# <div>
+            <div class="table-line"></div>
+          </div> %>
+
+
+          <% shifts = @shifts.select{ |shift| shift.beginning.strftime("%A") == day[:name] } %>
+          <% unless shifts.empty? %>
+            <div class="shift-cell">
+              <% shifts.each do |shift| %>
+                <% start_index = (shift.beginning - (9 * 3600)).strftime("%H").to_f.floor * 6 %>
+                <% end_index = (shift.ending - (9 * 3600)).strftime("%H").to_f.floor * 6 - 1 %>
+                <div class="shift-column">
+                  <div class="shift-perso" style="height:<%= 5 * start_index %>px;"><span><%= (5 * start_index) > 0 ? "-" : "" %></span></div>
+                  <div class="shift-perso" style="height:<%= 5 * (end_index - start_index) %>px; background-color: <%= shift.employee.color %>;">
+                    <span><%= shift.employee.first_name %></span>
+                    <span><%= shift.beginning.strftime("%H:%M") %></span>
+                    <span>-</span>
+                    <span><%= shift.ending.strftime("%H:%M") %></span>
+                    
+                    </div>
+                  <div class="shift-perso" style="height:<%= 5 * (78 - end_index) %>px;"><%= (5 * (78 - end_index)) < 10 ? "" : "-" %></div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+</div>
+

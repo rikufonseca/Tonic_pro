@@ -10,13 +10,13 @@ SubCategory.destroy_all
 Category.destroy_all
 Client.destroy_all
 
+Shift.destroy_all
+Planning.destroy_all
+Employee.destroy_all
+Day.destroy_all
+Tonic.destroy_all
+
 puts "All datas destroyed !"
-puts ""
-
-User.create!(email: "fonsecarika@gmail.com", password: "123456789")
-User.create!(email: "loris.reynaud@gmail.com", password: "azerty")
-
-puts "Rika 💅 & Loris 👨‍🔧 created ! "
 puts ""
 
 puts "create categories"
@@ -237,5 +237,59 @@ Client.create!(
 
 puts "Client created!"
 puts ""
+
+#################################### TONIC & Planning Part ####################################
+
+# create a tonic store
+tonic = Tonic.create!(
+  address: "Skoufa 27, Kolonaki",
+  city: "Athens",
+  country: "Greece"
+)
+Tonic::TONIC_ATHENS_DAYS.each do |day|
+  Day.create!(
+    name: day[:name],
+    opening: day[:opening],
+    closing: day[:closing],
+    tonic: tonic
+  )
+end
+puts "Tonic #{tonic.city} with opening days created !"
+puts ""
+
+User.create!(email: "fonsecarika@gmail.com", password: "123456789")
+User.create!(email: "loris.reynaud@gmail.com", password: "azerty")
+
+puts "Rika 💅 & Loris 👨‍🔧 created ! "
+puts ""
+
+# create employees
+employee = Employee.create!(
+  first_name: "Maria",
+  last_name: "Rastapopoulos",
+  color: "#C8FFC8",
+  note: "Always late...",
+  tonic_id: tonic.id
+)
+puts "#{employee.first_name} created !"
+
+employee = Employee.create!(
+  first_name: "Eleny",
+  last_name: "Vahariti",
+  color: "#EEEEAA",
+  note: "",
+  tonic_id: tonic.id
+)
+puts "#{employee.first_name} created !"
+
+employee = Employee.create!(
+  first_name: "Sophia",
+  last_name: "Strogili",
+  color: "#FFC8C8",
+  note: "Do the best nails in Athens !",
+  tonic_id: tonic.id
+)
+puts "#{employee.first_name} created !"
+
 
 puts "seeds done 🎉🎉"
